@@ -29,10 +29,10 @@ var CellT = cc.Class({
 			cc.v2(2, 1)
 		]); // -`-
 		this.rotates.push([
-			cc.v2(1, 0),
+			cc.v2(0, 0),
+			cc.v2(0, 1),
 			cc.v2(1, 1),
-			cc.v2(2, 1),
-			cc.v2(1, 2)
+			cc.v2(0, 2)
 		]); // |-
 	}
 

@@ -3,6 +3,8 @@ var CellBase = cc.Class({
 		this.rects = [];	// 方块
 		this.rotates = []; 	// 旋转坐标
 		this.rotateIndex = -1;	// 旋转索引
+		this.x = 0;
+		this.y = 0;
 		this.initRects();
 		this.initRotates();
 		this.rotateRight();
@@ -35,4 +37,28 @@ var CellBase = cc.Class({
 		this.rotateIndex %= this.rotates.length;
 		this.applyRotate();
 	},
+	/**
+	 * 当前宽度
+	 */
+	width: function() {
+		var w = 0;
+		for (var i = 0; i < this.rects.length; i += 1) {
+			if (w <= this.rects[i].x) {
+				w = this.rects[i].x;
+			}
+		}
+		return w;
+	},
+	/**
+	 * 当前高度
+	 */
+	height: function() {
+		var h = 0;
+		for (var i = 0; i < this.rects.length; i += 1) {
+			if (h <= this.rects[i].y) {
+				h = this.rects[i].y;
+			}
+		}
+		return h;
+	}
 });
