@@ -162,6 +162,10 @@ cc.Class({
             var rect = this.currentCell.rects[i];
             var rx = rect.x + x;
             var ry = rect.y + y;
+            if (rx < 0 || rx >= this.width) {
+                // 撞墙
+                return true;
+            }
             if (ry >= this.height) {
                 return true;   // 触底
             }
@@ -371,10 +375,11 @@ cc.Class({
         this.nextGraphics.fillColor = cc.hexToColor('#666600');
         for (var i = 0; i < this.nextCell.rects.length; i += 1) {
             var rect = this.nextCell.rects[i];
-            var x = rect.x * RECT_WIDTH;
-            var y = (4 - rect.y - 1) * RECT_HEIGHT;
-            // x += (this.nextGraphicsNode.width - this.nextCell.width() * RECT_WIDTH) / 2;
-            //y += (this.nextGraphicsNode.height - this.nextCell.height() * RECT_HEIGHT) / 2;
+            var x = (this.nextGraphicsNode.width - this.nextCell.width() * RECT_WIDTH) / 2;
+            var y = (this.nextGraphicsNode.height - this.nextCell.height() * RECT_HEIGHT) / 2;
+            x += rect.x * RECT_WIDTH - RECT_WIDTH / 2;
+            y += rect.y * RECT_HEIGHT + RECT_HEIGHT / 2;
+            y = this.nextGraphicsNode.height - y;
             this.nextGraphics.rect(x, y, RECT_WIDTH, RECT_HEIGHT);
             this.nextGraphics.fill();
         }

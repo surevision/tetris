@@ -31,7 +31,7 @@ var CellBase = cc.Class({
 	/**
 	 * 向左旋转
 	 */
-	rotateRight: function() {
+	rotateLeft: function() {
 		this.rotateIndex -= 1;
 		this.rotateIndex += this.rotates.length;
 		this.rotateIndex %= this.rotates.length;
